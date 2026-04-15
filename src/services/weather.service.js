@@ -23,9 +23,7 @@ const accuweather = {
     metric: true
 };
 
-
 export async function getCurrentForecast(){
-    console.log(accuweather)
     return await axios({
         method: "GET",
         baseURL: accuweather_hourly_url + accuweather_location,
