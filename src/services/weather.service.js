@@ -1,12 +1,9 @@
 import axios from 'axios'
 import { 
-    open_weather_api_key, 
-    open_weather_url, 
     hubs, 
-    accuweather_api_key, 
     accuweather_daily_url, 
     accuweather_hourly_url, 
-    accuweather_location_key 
+    accuweather_location 
 } from '../lib/constants';
 
 
@@ -20,7 +17,7 @@ import {
 // };
 
 const accuweather = {
-    apikey: accuweather_api_key,
+    apikey: process.env.REACT_APP_ACCUWEATHER_API_KEY,
     language: "en-gb",
     details: false,
     metric: true
@@ -28,12 +25,14 @@ const accuweather = {
 
 
 export async function getCurrentForecast(){
+    console.log(accuweather)
     return await axios({
         method: "GET",
-        baseURL: accuweather_hourly_url + accuweather_location_key,
+        baseURL: accuweather_hourly_url + accuweather_location,
         params: accuweather
     })
     .then(res => {
+        console.log(res.data)
         return res.data[0]
     })
     .catch(err => {
@@ -45,7 +44,7 @@ export async function getCurrentForecast(){
 export async function getForecast(){
     return await axios({
         method: "GET",
-        baseURL: accuweather_daily_url +"/"+ accuweather_location_key,
+        baseURL: accuweather_daily_url +"/"+ accuweather_location,
         params: accuweather
     })
     .then(res =>res.data)
