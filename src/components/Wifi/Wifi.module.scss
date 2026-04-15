@@ -1,0 +1,51 @@
+.block{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    line-height: 1;
+    gap: 2rem;
+}
+
+
+.text{
+    display: flex;
+    flex-direction: column;
+    padding-right: 2rem;
+    border-right: 3px solid rgba(255, 255, 255, 0.25);
+}
+
+.desc{
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.5;
+}
+
+.icon{
+    fill: #fff;
+    width: 80px;
+    height: 80px;
+}
+
+.qrCode{
+    width: 80px;
+    height: 80px;
+}
+
+.qrCntr{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+    width: auto;
+}
+
+.qrHelpText{
+    font-size: 1.2rem;
+    opacity: 0.5;
+}
+
+.password{
+    font-size: 2.1rem;
+    margin-top: .5rem;
+}
+
