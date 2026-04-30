@@ -11,7 +11,7 @@ function Event(){
                     </span>
 
                     <span className={Style.group}>
-                        Garden Route Mayor
+                        Garden Route Executive Mayor
                     </span>
 
                     <span className={Style.name}>
