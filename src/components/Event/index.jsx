@@ -11,12 +11,12 @@ function Event(){
                     </span>
 
                     <span className={Style.group}>
-                        The Womxn's Table
+                        TEDxGeorge
                     </span>
 
                     <span className={Style.name}>
                         <span className={Style.type}>
-                            Event: Meeting 
+                            Event: Conference 
                         </span>
 
                         <time className={Style.duration}>
