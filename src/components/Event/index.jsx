@@ -11,12 +11,12 @@ function Event(){
                     </span>
 
                     <span className={Style.group}>
-                        TEDxGeorge @ Fancourt
+                        Nelson Mandela University
                     </span>
 
                     <span className={Style.name}>
                         <span className={Style.type}>
-                            Event: Conference 
+                            Event: Meeting 
                         </span>
 
                         <time className={Style.duration}>
