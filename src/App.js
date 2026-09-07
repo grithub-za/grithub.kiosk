@@ -6,6 +6,7 @@ import Weather from "./components/Weather";
 import Wifi from "./components/Wifi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import VideoAd from "./components/VideoAd";
+import useAutoRefresh from "./custom_hooks/useAutoRefresh";
 
 
 function App() {
@@ -17,6 +18,8 @@ function App() {
 			}
 		}
 	})
+
+	useAutoRefresh();
 
 
 	return (

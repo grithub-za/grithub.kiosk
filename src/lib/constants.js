@@ -2,6 +2,10 @@ export const accuweather_location = 301195;
 export const accuweather_daily_url = "https://dataservice.accuweather.com/forecasts/v1/daily/5day/";
 export const accuweather_hourly_url = "https://dataservice.accuweather.com/forecasts/v1/hourly/1hour/";
 
+// n8n workflow that reads the "kisok_events" data table
+export const n8n_events_webhook_url = "https://grithub.app.n8n.cloud/webhook/eba50fdd-484b-4dc7-8131-04d72ec9f7a7";
+export const n8n_events_webhook_test_url = "https://grithub.app.n8n.cloud/webhook-test/eba50fdd-484b-4dc7-8131-04d72ec9f7a7";
+
 
 export const hubs = {
     george: {
