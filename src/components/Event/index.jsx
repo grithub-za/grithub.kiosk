@@ -10,7 +10,7 @@ function Event(){
         queryKey: ["kiosk_events"],
         queryFn: getEvents,
         retry: false,
-        refetchInterval: 300000,
+        refetchInterval: 12 * 60 * 60 * 1000, // 12 hours in milliseconds
         refetchOnWindowFocus: false
     })
 
