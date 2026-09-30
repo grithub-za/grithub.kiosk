@@ -1,60 +1,52 @@
 import Style from "./Video.module.scss"
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
+import MuxPlayer from "@mux/mux-player-react";
 import { useClock } from "../../custom_hooks/useClock";
 
-const video = "https://player.vimeo.com/progressive_redirect/playback/845283960/rendition/1080p/file.mp4?loc=external&log_user=0&signature=6af30e4335756e51a79f0d585cbb801ee0a8193a202498fe6e97b4025987cc33"
+const PLAYBACK_ID = "MLF1qE1ZHbGaZvTCa5NzCAVRlKPh3JCvRinWg01RN5jU"
+const INTERVAL_MINUTES = 15
+const FADE_MS = 1000
 
 function VideoAd(){
     const [ show, setShown ] = useState(false)
-    const videoRef = useRef()
-    // const clock = useClock({ locale: "en-GB", timeZone: "CAT" });
+    const playerRef = useRef()
+    const clock = useClock({ locale: "en-GB", timeZone: "CAT" });
 
-    
-    // useEffect(() => {
-    //     if( clock.raw.minutes.toString() === "30" && videoRef?.current ){
-    //         setShown(true)
-    //         videoRef.current.play()
-    //     }
+    // clock.raw.minutes only changes once a minute, so this fires once per :00/:15/:30/:45
+    useEffect(() => {
+        console.log("[VideoAd] minute tick", clock.raw.minutes, "player?", !!playerRef.current) // TEMP debug
+        if( clock.raw.minutes % INTERVAL_MINUTES !== 0 || !playerRef.current ) return
 
-    //     if( videoRef?.current ){
-    //         videoRef.current.addEventListener("ended", () => {
-    //             videoRef.current.pause()
-    //             setShown(false)
-    //         })
-    //     }
+        playerRef.current.currentTime = 0
+        playerRef.current.play()?.catch(() => {})
+        setShown(true)
+        
+    }, [ clock.raw.minutes ])
 
-    //     // refresh the page once an hour
-    //     if( clock.raw.minutes.toString() === "02" ){
-    //         const date = new Date()
 
-    //         if( date.getMinutes() === 0 && date.getSeconds() === 0 ){
-    //             window.location.reload()
-    //         }
-    //     }
+    // fade back to the kiosk, then rewind once it's invisible
+    function handleEnded(){
+        setShown(false)
 
-    //     return () => {
-    //         if( videoRef?.current ){
-    //             videoRef.current.removeEventListener("ended", () => {
-    //                 videoRef.current.pause()
-    //                 setShown(false)
-    //             })
-    //         }
-    //     }
+        setTimeout(() => {
+            if( playerRef.current ) playerRef.current.currentTime = 0
 
-    // }, [ clock.raw.minutes, clock.raw.hours ])
-
+        }, FADE_MS)
+    }
 
     return(
-        <video 
-            controls={false} 
+        <MuxPlayer
+            ref={playerRef}
             muted
-            ref={videoRef} 
-            width="1024" 
+            preload="auto"
+            streamType="on-demand"
+            playbackId={PLAYBACK_ID}
+            onEnded={handleEnded}
+            onPlay={() => console.log("[VideoAd] player play event", new Date().toLocaleTimeString())} // TEMP debug
+            onPause={() => console.log("[VideoAd] player pause event", new Date().toLocaleTimeString())} // TEMP debug
             className={clsx(Style.block, show && Style.show)}
-        >
-            <source src={video} type="video/mp4" />
-        </video>
+        />
     )
 }
 

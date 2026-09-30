@@ -1,13 +1,11 @@
-import logo from "./assets/desktop-logo.png"
-import Style from './styles/App.module.scss';
-import Time from "./components/Time";
-import Event from "./components/Event";
-import Weather from "./components/Weather";
-import Wifi from "./components/Wifi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import VideoAd from "./components/VideoAd";
 import useAutoRefresh from "./custom_hooks/useAutoRefresh";
+import Kiosk from "./pages/kiosk";
+import TedX from "./pages/tedx";
 
+const routes = {
+	"/tedx": TedX
+}
 
 function App() {
 	const queryClient = new QueryClient({
@@ -21,22 +19,12 @@ function App() {
 
 	useAutoRefresh();
 
+	const path = window.location.pathname.replace(/\/+$/, "").toLowerCase();
+	const Page = routes[path] || Kiosk;
 
 	return (
 		<QueryClientProvider client={queryClient}>
-			<div className={Style.block} style={{ backgroundImage: `url(${logo})`}}>
-				<header className={Style.header}>
-					<Event />
-					<Time />
-				</header>
-
-				<footer className={Style.footer}>
-					<Wifi />
-					<Weather />
-				</footer>
-			</div>
-
-			<VideoAd />
+			<Page />
 		</QueryClientProvider>
 	);
 }

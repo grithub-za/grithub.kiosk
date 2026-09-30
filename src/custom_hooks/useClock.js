@@ -5,7 +5,7 @@ export function useClock({
     locale = "en-GB", 
     timeZone = "CAT" 
 }){
-    const [ now, setNow ] = useState(0)
+    const [ now, setNow ] = useState(() => Date.now())
     const timer = useRef();
     const [ timeZoneLocale, setTimeZone ] = useState("Africa/Johannesburg")
 
