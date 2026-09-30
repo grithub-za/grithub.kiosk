@@ -8,7 +8,7 @@ import { useClock } from "../../custom_hooks/useClock";
 const INTERVAL_MINUTES = 15
 const FADE_MS = 1000
 
-function VideoAd({  PLAYBACK_ID }){
+function VideoAd({ PLAYBACK_ID }){
     const [ show, setShown ] = useState(false)
     const playerRef = useRef()
     const clock = useClock({ locale: "en-GB", timeZone: "CAT" });
