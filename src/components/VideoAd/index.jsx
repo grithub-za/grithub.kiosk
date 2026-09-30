@@ -4,11 +4,11 @@ import clsx from "clsx";
 import MuxPlayer from "@mux/mux-player-react";
 import { useClock } from "../../custom_hooks/useClock";
 
-const PLAYBACK_ID = "MLF1qE1ZHbGaZvTCa5NzCAVRlKPh3JCvRinWg01RN5jU"
+
 const INTERVAL_MINUTES = 15
 const FADE_MS = 1000
 
-function VideoAd(){
+function VideoAd({  PLAYBACK_ID }){
     const [ show, setShown ] = useState(false)
     const playerRef = useRef()
     const clock = useClock({ locale: "en-GB", timeZone: "CAT" });

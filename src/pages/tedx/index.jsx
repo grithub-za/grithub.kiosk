@@ -21,7 +21,7 @@ function TedX() {
 				</footer>
 			</div>
 
-			<VideoAd />
+			<VideoAd PLAYBACK_ID="IYbMwB02sc8uN01GQ9s1rZmzQoMfwm5Z2Dim4zU48qPII" />
 		</>
 	);
 }
