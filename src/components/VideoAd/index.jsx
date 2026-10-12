@@ -5,7 +5,7 @@ import MuxPlayer from "@mux/mux-player-react";
 import { useClock } from "../../custom_hooks/useClock";
 
 
-const INTERVAL_MINUTES = 15
+const INTERVAL_MINUTES = 30
 const FADE_MS = 1000
 
 function VideoAd({ PLAYBACK_ID }){
